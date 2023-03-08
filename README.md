@@ -1,6 +1,6 @@
-# lista_tarefas
+# lista_tarefas_firebase
 
-Projeto Flutter - Lista de Tarefas
+Projeto Flutter - Lista de Tarefas com Firebase
 
 ## Getting Started
 
