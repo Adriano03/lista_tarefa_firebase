@@ -1,12 +1,10 @@
 # lista_tarefas
 
-Projeto Flutter - Lista de Tarefas com Firebase;
+Projeto Flutter - Lista de Tarefas
 
 ## Getting Started
 
-Aplicativo desenvolvido para registrar qualquer tipo de tarefa, podendo adicionar título e descrição, editar, excluir temporiamente e permanentemente, as tarefas por padrão ficam pendentes depois de criadas, podendo marcar como concluído e também adicionar aos favoritos. 
-Cada tatefa é adicionada para um usuário com conta criada. Podendo registrar, logar e recuperar senha;
-Para gerência de estado é utilizado apenas o bloc e para salvar os dados é utilizado o firebase;
+Aplicativo desenvolvido para registrar qualquer tipo de tarefa, podendo adicionar título e descrição, editar, excluir temporiamente e permanentemente, as tarefas por padrão ficam pendentes depois de criadas, podendo marcar como concluído e também adicionar aos favoritos. Para gerência de estado é utilizado apenas o bloc e para salvar os dados no dispositivo é utilizado o HydatredBloc;
 
 - Adicionar tarefas através de uma modal contendo o título e descrição;
 - Para atualizar e renderizar os itens da tela é utilizado o BlocBuilder;
