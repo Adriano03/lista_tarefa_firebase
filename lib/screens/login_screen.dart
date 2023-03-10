@@ -39,6 +39,8 @@ class _LoginScreenState extends State<LoginScreen> {
         .then((value) {
       // Salvar dados do usuário no dispositivo. Passado o uid para o 'token' da storage. Podendo comparar na tela SplashScreen;
       GetStorage().write('token', value.user!.uid);
+      // Armazena no dispositivo o email do usuário para usar no FirestoreRepository para criar uma coleção;
+      GetStorage().write('email', value.user!.email);
       Navigator.pushReplacementNamed(context, TabsScreen.id);
       MessageScaffold.showMessage(
           context, 'Login realizado com sucesso!', Colors.green);

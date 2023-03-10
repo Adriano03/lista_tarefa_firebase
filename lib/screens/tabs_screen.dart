@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista_tarefas/blocs/bloc_exports.dart';
 import 'package:lista_tarefas/screens/add_task_screen.dart';
 import 'package:lista_tarefas/screens/completed_tasks_screen.dart';
 import 'package:lista_tarefas/screens/favorite_tasks_screen.dart';
@@ -20,6 +21,13 @@ class _TabsScreenState extends State<TabsScreen> {
     {'pageName': const CompletedTasksScreen(), 'title': 'Tarefas Completas'},
     {'pageName': const FavoriteTasksScreen(), 'title': 'Tarefas Favoritas'},
   ];
+
+  // Sempre na chamada da página é chamado o método GetAllTasks() para atualizar página;
+  @override
+  void initState() {
+    context.read<TasksBloc>().add(GetAllTasks());
+    super.initState();
+  }
 
   int _selectedPageIndex = 0;
 
@@ -43,7 +51,7 @@ class _TabsScreenState extends State<TabsScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:  Text(_pageDetails[_selectedPageIndex]['title']),
+        title: Text(_pageDetails[_selectedPageIndex]['title']),
         actions: [
           IconButton(
             onPressed: () => _addTask(context),
@@ -53,11 +61,13 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
       drawer: const MyDrawer(),
       body: _pageDetails[_selectedPageIndex]['pageName'],
-      floatingActionButton: _selectedPageIndex == 0 ? FloatingActionButton(
-        onPressed: () => _addTask(context),
-        tooltip: 'Adicionar Tarefas',
-        child: const Icon(Icons.add),
-      ) : null,
+      floatingActionButton: _selectedPageIndex == 0
+          ? FloatingActionButton(
+              onPressed: () => _addTask(context),
+              tooltip: 'Adicionar Tarefas',
+              child: const Icon(Icons.add),
+            )
+          : null,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
         onTap: (index) {

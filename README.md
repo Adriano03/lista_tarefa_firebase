@@ -11,6 +11,7 @@ Para gerência de estado é utilizado o bloc e para salvar os dados é utilizado
 - Tela de cadastro e login para o usuário se conectar com o Firebase;
 - Tela para recuperação de senha;
 - Utilização do pacote getStorage para manter o uid do usuário, assim não precisar logar toda vez que entrar no app;
+- Todas as tarefas adicionadas ao firebase para o email do usuário;
 - Adicionar tarefas através de uma modal contendo o título e descrição;
 - Para atualizar e renderizar os itens da tela é utilizado o BlocBuilder;
 - MultiBlocProvider para fornecer dados para os widgets filhos;

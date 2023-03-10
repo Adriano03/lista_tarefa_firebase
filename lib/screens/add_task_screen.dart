@@ -20,7 +20,10 @@ class AddTaskScreen extends StatelessWidget {
         description: descriptionController.text,
         date: DateTime.now(),
       );
+      // Passar dados da tarefa para adicionar na função _onAddTask;
       context.read<TasksBloc>().add(AddTask(task: task));
+      // Chamar a função para atualizar a tela;
+      context.read<TasksBloc>().add(GetAllTasks());
       Navigator.pop(context);
     }
 
