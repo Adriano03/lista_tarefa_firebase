@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "418472527823",
+    "project_id": "lista-tarefas-firebase-2a012",
+    "storage_bucket": "lista-tarefas-firebase-2a012.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418472527823:android:3efea157c2a0e6f11834ba",
+        "android_client_info": {
+          "package_name": "com.example.lista_tarefas_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418472527823-rst6blde93h1h4bi35c75cgm9ji8dia8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvOV8fno_PDpVBmBBa0Fpn-ikIKUsDCE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418472527823-rst6blde93h1h4bi35c75cgm9ji8dia8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

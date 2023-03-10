@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:lista_tarefas/screens/login_screen.dart';
 import 'package:lista_tarefas/screens/recycle_bin.dart';
 import 'package:lista_tarefas/screens/tabs_screen.dart';
 
@@ -9,6 +11,8 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GetStorage getStorage = GetStorage();
+
     return SafeArea(
       child: Drawer(
         child: Column(
@@ -74,6 +78,16 @@ class MyDrawer extends StatelessWidget {
                   ),
                 );
               },
+            ),
+            const Divider(thickness: 0.8),
+            ListTile(
+              onTap: () {
+                // Remover usuário logado;
+                getStorage.remove('token');
+                Navigator.pushReplacementNamed(context, LoginScreen.id);
+              },
+              leading: const Icon(Icons.logout),
+              title: const Text('Sair'),
             ),
             const Divider(thickness: 0.8),
             BlocBuilder<SwitchBloc, SwitchState>(

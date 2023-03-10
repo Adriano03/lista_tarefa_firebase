@@ -11,6 +11,7 @@ class Task extends Equatable {
   bool? isDone;
   bool? isDeleted;
   bool? isFavorite;
+  
 
   Task({
     required this.id,

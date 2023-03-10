@@ -8,6 +8,9 @@ Aplicativo desenvolvido para registrar qualquer tipo de tarefa, podendo adiciona
 Todas as tarefas são referente a apenas o usuário logado no firebase. O usuário pode criar e logar com uma conta, em também pode recuperar a senha.
 Para gerência de estado é utilizado o bloc e para salvar os dados é utilizado o firebase.
 
+- Tela de cadastro e login para o usuário se conectar com o Firebase;
+- Tela para recuperação de senha;
+- Utilização do pacote getStorage para manter o uid do usuário, assim não precisar logar toda vez que entrar no app;
 - Adicionar tarefas através de uma modal contendo o título e descrição;
 - Para atualizar e renderizar os itens da tela é utilizado o BlocBuilder;
 - MultiBlocProvider para fornecer dados para os widgets filhos;
@@ -18,5 +21,4 @@ Para gerência de estado é utilizado o bloc e para salvar os dados é utilizado
 - Na lixeira ao abrir o popupMenu e clicar em excluir, o item é excluído permanente. Pode também excluir toda a lista clicando no botão na appBar;
 - Lógica desenvolvida para poder adicionar, excluir, editar, ou adicionar ou retirar dos favoritos em qualquer tela;
 - Os items da lixeira podem ser restaurados;
-- Salvar e restaurar o estado do bloc utilizando o HydratedBloc assim persistindo os dados;
 - Opção para mudar o aplicativo inteiro para modo noturno;
