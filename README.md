@@ -5,7 +5,7 @@ Projeto Flutter - Lista de Tarefas com Firebase
 ## Getting Started
 
 Aplicativo desenvolvido para registrar qualquer tipo de tarefa, podendo adicionar título e descrição, editar, excluir temporiamente e permanentemente, as tarefas por padrão ficam pendentes depois de criadas, podendo marcar como concluído e também adicionar aos favoritos. 
-Todas as tarefas são referente a apenas o usuário logado no firebase. O usuário pode criar e logar com uma conta, em também pode recuperar a senha.
+Todas as tarefas são referentes a apenas o usuário logado no firebase. O usuário pode criar e logar com uma conta, em também pode recuperar a senha.
 Para gerência de estado é utilizado o bloc e para salvar os dados é utilizado o firebase.
 
 - Tela de cadastro e login para o usuário se conectar com o Firebase;
@@ -23,3 +23,4 @@ Para gerência de estado é utilizado o bloc e para salvar os dados é utilizado
 - Lógica desenvolvida para poder adicionar, excluir, editar, ou adicionar ou retirar dos favoritos em qualquer tela;
 - Os items da lixeira podem ser restaurados;
 - Opção para mudar o aplicativo inteiro para modo noturno;
+

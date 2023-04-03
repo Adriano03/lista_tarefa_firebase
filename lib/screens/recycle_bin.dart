@@ -12,6 +12,7 @@ class RecycleBin extends StatelessWidget {
 
   _deleteAllTasksRemoved(BuildContext context) {
     context.read<TasksBloc>().add(DeleteAllTasks());
+    context.read<TasksBloc>().add(GetAllTasks());
   }
 
   @override

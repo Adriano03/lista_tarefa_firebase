@@ -67,34 +67,44 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     await FirestoreRepository.update(task: updateTask);
   }
 
-  // Quando usuário remove tarefa da lista;
-  void _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) {
-    print('Delete task');
+  // Quando usuário remove tarefa da lixeira;
+  Future<void> _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) async {
+    await FirestoreRepository.deleteTask(task: event.task);
   }
 
-  // Quando usuário remove tarefa da lixeira;
-  void _onRemoveTask(RemoveTask event, Emitter<TasksState> emit) {
-    print('Remove task');
+  // Quando usuário remove tarefa da lista;
+  Future<void> _onRemoveTask(RemoveTask event, Emitter<TasksState> emit) async {
+    Task removedTask = event.task.copyWith(isDeleted: true);
+    await FirestoreRepository.update(task: removedTask);
   }
 
   // Quando usuário marca ou desmarca o como favorito;
-  void _onMarkFavoriteOrUnfavoriteTask(
-      MarkFavoriteOrUnfavoriteTask event, Emitter<TasksState> emit) {
-    print('Favorite task');
+  Future<void> _onMarkFavoriteOrUnfavoriteTask(
+      MarkFavoriteOrUnfavoriteTask event, Emitter<TasksState> emit) async {
+    Task updateTask = event.task.copyWith(isFavorite: !event.task.isFavorite!);
+    await FirestoreRepository.update(task: updateTask);
   }
 
   // Quando usuário edita a tarefa;
-  void _onEditTask(EditTask event, Emitter<TasksState> emit) {
-    print('Edit task');
+  Future<void> _onEditTask(EditTask event, Emitter<TasksState> emit) async {
+    await FirestoreRepository.update(task: event.newTask); 
   }
 
   // Quando o usuário restora a tarefa que está na lixeira;
-  void _onRestoreTask(RestoreTask event, Emitter<TasksState> emit) {
-    print('Restore task');
+  Future<void> _onRestoreTask(
+      RestoreTask event, Emitter<TasksState> emit) async {
+    Task restoredTask = event.task.copyWith(
+      isDeleted: false,
+      isDone: false,
+      isFavorite: false,
+      date: DateTime.now(),
+    );
+
+    await FirestoreRepository.update(task: restoredTask);
   }
 
   // Quando usuário remove todas as tarefas da lixeira;
-  void _onDeleteAllTask(DeleteAllTasks event, Emitter<TasksState> emit) {
-    print('Delete All task');
+  Future<void> _onDeleteAllTask(DeleteAllTasks event, Emitter<TasksState> emit) async {
+    await FirestoreRepository.deleteAllTask(taskList: state.removedTasks);
   }
 }

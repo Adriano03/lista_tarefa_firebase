@@ -33,7 +33,8 @@ class EditTaskScreen extends StatelessWidget {
       );
       context
           .read<TasksBloc>()
-          .add(EditTask(newTask: editedtask, oldTask: oldTask));
+          .add(EditTask(newTask: editedtask));
+      context.read<TasksBloc>().add(GetAllTasks());
       Navigator.pop(context);
     }
 

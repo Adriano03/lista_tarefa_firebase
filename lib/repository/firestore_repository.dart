@@ -4,6 +4,9 @@ import 'package:lista_tarefas/models/task.dart';
 
 // No firebase é organizado: A coleção que é o email do usuário. Dentro de cada coleção vai ter o Id da tarefa e depois os dados;
 
+// Pega as coleçôes do usuário a partir da chave email que foi salvo na tela de login;
+final data = FirebaseFirestore.instance.collection(GetStorage().read('email'));
+
 class FirestoreRepository {
   // Criar tarefa no firebase;
   static Future<void> create({Task? task}) async {
@@ -35,14 +38,31 @@ class FirestoreRepository {
     }
   }
 
-  // Marcar checkbox como concluído ou não;
+  // Marcar checkbox como concluído ou não; Remover tarefa; Restaurar Tarefa; Marcar Favorito;
   static Future<void> update({Task? task}) async {
     try {
-      // Pega as coleçôes do usuário pelo email;
-      final data =
-          FirebaseFirestore.instance.collection(GetStorage().read('email'));
       //Atualiza a tarefa passada pelo id;
       data.doc(task!.id).update(task.toMap());
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  // Remover tarefa permanentemente;
+  static Future<void> deleteTask({Task? task}) async {
+    try {
+      data.doc(task!.id).delete();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  // Remover todas as tarefas;
+  static Future<void> deleteAllTask({List<Task>? taskList}) async {
+    try {
+      for (var task in taskList!) {
+        data.doc(task.id).delete();
+      }
     } catch (e) {
       throw Exception(e.toString());
     }

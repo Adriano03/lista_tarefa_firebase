@@ -62,12 +62,11 @@ class _LoginScreenState extends State<LoginScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'Insira seus dados para realizar o login!',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   const SizedBox(height: 60),

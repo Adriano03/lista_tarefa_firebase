@@ -15,18 +15,24 @@ class TaskTile extends StatelessWidget {
   });
 
   void _removeOrDeleteTask(BuildContext context, Task task) {
-    task.isDeleted!
-        // Se marcado (isDeleted == true) é deletado da lixeira de reciclagem;
-        ? context.read<TasksBloc>().add(DeleteTask(
-              task: task,
-            ))
-        // Se não estiver marcado (isDeleted == false) é adicionado a lixeira;
-        : context.read<TasksBloc>().add(RemoveTask(
-              task: task,
-            ));
+    if (task.isDeleted!) {
+      // Se marcado (isDeleted == true) é deletado permanentemente da lixeira de reciclagem;
+      context.read<TasksBloc>().add(DeleteTask(task: task));
+    } else {
+      // Se não estiver marcado (isDeleted == false) é adicionado a lixeira;
+      context.read<TasksBloc>().add(RemoveTask(task: task));
+    }
+  }
+
+  void _likeOrDislike(BuildContext context, Task task) {
+    context.read<TasksBloc>().add(MarkFavoriteOrUnfavoriteTask(task: task));
+
+    context.read<TasksBloc>().add(GetAllTasks());
   }
 
   void _editTask(BuildContext context) {
+    Navigator.pop(context);
+
     showModalBottomSheet(
       isDismissible: false,
       isScrollControlled: true,
@@ -43,6 +49,7 @@ class TaskTile extends StatelessWidget {
 
   void _restoreTask(BuildContext context) {
     context.read<TasksBloc>().add(RestoreTask(task: task));
+    context.read<TasksBloc>().add(GetAllTasks());
   }
 
   @override
@@ -95,15 +102,12 @@ class TaskTile extends StatelessWidget {
               ),
               PopupMenu(
                 task: task,
-                cancelOrDeleteCallBack: () =>
-                    _removeOrDeleteTask(context, task),
-                likeOrDislikeCallBack: () => context
-                    .read<TasksBloc>()
-                    .add(MarkFavoriteOrUnfavoriteTask(task: task)),
-                editTaskCallback: () {
-                  Navigator.pop(context);
-                  _editTask(context);
+                cancelOrDeleteCallBack: () {
+                  _removeOrDeleteTask(context, task);
+                  context.read<TasksBloc>().add(GetAllTasks());
                 },
+                likeOrDislikeCallBack: () => _likeOrDislike(context, task),
+                editTaskCallback: () => _editTask(context),
                 restoreTaskCallback: () => _restoreTask(context),
               ),
             ],
